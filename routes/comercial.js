@@ -18,7 +18,6 @@ router.get("/", async function(req,res){
         res.status(501).json(helper.outputJSON("error", error.message));
     }
 
-
 })
 
 router.get("/:id", async function(req,res){
