@@ -10,23 +10,21 @@ function emptyOrRows(rows) {
 }
 
 function outputJSON(status, message, data) {
-  let jsonOutput = "{status: " + status + ",";
-  let coma = false;
-  if(message!== undefined && typeof message === "string" && message.length>0);{
-    jsonOutput += "message: "+message;
-    coma = true;
+  let jsonOutput = '{"status": "' + status + '"';
+  
+  if(message!== undefined && typeof message === "string" && message.length>0){
+    jsonOutput += ',"message": "'+message+'"';
   }
 
   if (
-    (data !== undefined && data.length > 0) ||
-    (data !== undefined && typeof data === 'object' && !Array.isArray(data))
+    (data !== undefined && data.length > 0) || //es un array con longitud >0 
+    (data !== undefined && typeof data === 'object' && !Array.isArray(data)) // o es un objeto que no es un array (JSON)
   ) {
-    if(coma){
-      jsonOutput += ",";
-    }
-    jsonOutput += "data: "+data;
+    jsonOutput += ',"data": '+JSON.stringify(data);
   }
-
+    
+  jsonOutput += '}';
+  return JSON.parse(jsonOutput);
 }
 
 module.exports = {
