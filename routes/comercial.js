@@ -34,7 +34,7 @@ router.get("/:id", async function(req,res){
 
 router.post("/", async function (req,res) {
     const {nombre, apellido1, apellido2, comision} = req.body;
-    
+    console.log("Datos: " + nombre + " " + apellido1 + " " + apellido2 + " " + comision);
     if(nombre == undefined || apellido1 == undefined || apellido2 == undefined || comision == undefined){
         //Faltan datos
         const mensaje = "Error al obtener datos. Los 4 datos son obligatorios";
@@ -46,7 +46,6 @@ router.post("/", async function (req,res) {
             apellido2: apellido2,
             comision: comision
         }
-
         try {
             const data = await comercialService.createComercial(comercial);
             console.debug(data);
